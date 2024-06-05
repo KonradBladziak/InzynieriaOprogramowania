@@ -1,5 +1,7 @@
 package vod.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import vod.repository.TankerDao;
 import vod.repository.PlatoonDao;
 import vod.repository.TankDao;
@@ -11,6 +13,7 @@ import vod.service.TankService;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Component
 public class TankServiceBean implements TankService {
 
     private static final Logger log = Logger.getLogger(TankService.class.getName());
@@ -25,6 +28,12 @@ public class TankServiceBean implements TankService {
         this.tankerDao = tankerDao;
         this.tankDao = tankDao;
     }
+
+    @Autowired
+    public void setPlatoonDao(PlatoonDao platoonDao) {
+        this.platoonDao = platoonDao;
+    }
+
 
     public List<Tank> getAllTanks() {
         log.info("searching all tanks...");

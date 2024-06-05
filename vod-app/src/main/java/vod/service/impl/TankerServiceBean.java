@@ -1,5 +1,7 @@
 package vod.service.impl;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import vod.model.Tanker;
 import vod.model.Tank;
 import vod.repository.TankerDao;
@@ -9,6 +11,8 @@ import vod.service.TankerService;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Component
+@Scope("prototype")
 public class TankerServiceBean implements TankerService {
 
     private static final Logger log = Logger.getLogger(TankerService.class.getName());

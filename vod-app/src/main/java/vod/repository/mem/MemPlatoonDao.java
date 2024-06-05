@@ -1,10 +1,12 @@
 package vod.repository.mem;
 
+import org.springframework.stereotype.Component;
 import vod.repository.PlatoonDao;
 import vod.model.Platoon;
 
 import java.util.List;
 
+@Component
 public class MemPlatoonDao implements PlatoonDao {
 
     @Override

@@ -1,11 +1,8 @@
 package vod.service;
 
-import vod.repository.TankerDao;
-import vod.repository.TankDao;
-import vod.repository.mem.MemTankerDao;
-import vod.repository.mem.MemTankDao;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import vod.model.Tanker;
-import vod.service.impl.TankerServiceBean;
 
 import java.util.List;
 
@@ -14,13 +11,16 @@ public class VodServiceMain {
     public static void main(String[] args) {
         System.out.println("Let's find tankers!");
 
-        TankerDao tankerDao = new MemTankerDao();
-        TankDao tankDao = new MemTankDao();
-        
-        TankerService service = new TankerServiceBean(tankerDao, tankDao);
+        ApplicationContext context = new AnnotationConfigApplicationContext("vod");
+        TankerService service = context.getBean(TankerService.class);
+        TankerService service2 = context.getBean(TankerService.class);
 
+        // service use
         List<Tanker> tankers = service.getAllTankers();
-        System.out.println(tankers.size() + " cinemas found:");
+        System.out.println(tankers.size() + " tankers found:");
         tankers.forEach(System.out::println);
+
+        String foo = context.getBean(String.class);
+        System.out.println("foo string: " + foo);
     }
 }

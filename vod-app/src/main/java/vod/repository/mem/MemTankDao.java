@@ -1,5 +1,6 @@
 package vod.repository.mem;
 
+import org.springframework.stereotype.Component;
 import vod.repository.TankDao;
 import vod.model.Tanker;
 import vod.model.Platoon;
@@ -8,6 +9,7 @@ import vod.model.Tank;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class MemTankDao implements TankDao {
 
     @Override
