@@ -1,5 +1,7 @@
 package vod.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,8 @@ public class Tanker {
     private int id;
     private String name;
     private String surname;
+
+    @JsonIgnore
     private List<Tank> tanks = new ArrayList<>();
 
 
