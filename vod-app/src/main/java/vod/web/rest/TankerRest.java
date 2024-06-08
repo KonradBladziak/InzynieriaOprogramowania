@@ -1,8 +1,13 @@
 package vod.web.rest;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import vod.model.Tanker;
 import vod.model.Tank;
@@ -10,6 +15,7 @@ import vod.service.TankService;
 import vod.service.TankerService;
 
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,6 +25,8 @@ public class TankerRest {
 
     private final TankerService tankerService;
     private final TankService tankService;
+    private final MessageSource messageSource;
+    private final LocaleResolver localeResolver;
 
     @GetMapping("/tankers")
     List<Tanker> getTankers(@RequestParam(value = "phrase") String phrase,
@@ -58,8 +66,17 @@ public class TankerRest {
 
 
     @PostMapping("/tankers/create-tanker")
-    ResponseEntity<Tanker> addTanker(@RequestBody Tanker tanker){
+    ResponseEntity<?> addTanker(@Validated @RequestBody Tanker tanker, Errors errors, HttpServletRequest request){
         log.info("about to add tanker {}", tanker.getName());
+
+        if(errors.hasErrors()){
+            Locale locale = localeResolver.resolveLocale(request);
+            String errorMessage = errors.getAllErrors().stream()
+                    .map(oe -> messageSource.getMessage(oe.getCode(), new Object[0], locale))
+                    .reduce("errors:\n", (accu, oe)->accu+oe + "\n");
+            return ResponseEntity.badRequest().body(errorMessage);
+        }
+
         this.tankerService.addTanker(tanker);
         log.info("tanker added {}", tanker.getName());
         return ResponseEntity.status(201).body(tanker);

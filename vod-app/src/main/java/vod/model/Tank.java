@@ -1,11 +1,14 @@
 package vod.model;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Tank {
 
     private int id;
+    @NotNull
     private String name;
     private Platoon platoon;
     private List<Tanker> tankers = new ArrayList<>();

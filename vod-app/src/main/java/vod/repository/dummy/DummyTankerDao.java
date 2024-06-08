@@ -24,4 +24,9 @@ public class DummyTankerDao implements TankerDao {
     public List<Tanker> findByTank(Tank tank) {
         return List.of();
     }
+
+    @Override
+    public void addTanker(Tanker tanker) {
+        return;
+    }
 }
