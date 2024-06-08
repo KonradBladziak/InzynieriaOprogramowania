@@ -9,6 +9,8 @@ public interface TankerService {
 
     Tanker getTankerById(int id);
 
+    void addTanker(Tanker tanker);
+
     List<Tanker> getAllTankers();
 
     List<Tanker> getTankersByTank(Tank tank);

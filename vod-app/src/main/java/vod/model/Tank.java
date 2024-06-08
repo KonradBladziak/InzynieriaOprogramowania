@@ -28,6 +28,9 @@ public class Tank {
         this.id = id;
     }
 
+    public String getName() {
+        return this.name;
+    }
 
     public Platoon getPlatoon() {
         return platoon;

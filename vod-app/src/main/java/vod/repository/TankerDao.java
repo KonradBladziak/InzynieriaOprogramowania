@@ -12,4 +12,6 @@ public interface TankerDao {
     Tanker findById(int id);
 
     List<Tanker> findByTank(Tank tank);
+
+    void addTanker(Tanker tanker);
 }
