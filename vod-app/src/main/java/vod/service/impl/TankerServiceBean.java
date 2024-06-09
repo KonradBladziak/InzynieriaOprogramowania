@@ -2,6 +2,7 @@ package vod.service.impl;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import vod.model.Tanker;
 import vod.model.Tank;
 import vod.repository.TankerDao;
@@ -11,7 +12,7 @@ import vod.service.TankerService;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Component
+@Service
 @Scope("prototype")
 public class TankerServiceBean implements TankerService {
 
@@ -30,6 +31,12 @@ public class TankerServiceBean implements TankerService {
     public Tanker getTankerById(int id) {
         log.info("searching tanker by id " + id);
         return tankerDao.findById(id);
+    }
+
+    @Override
+    public void addTanker(Tanker tanker) {
+        log.info("adding tanker " + tanker);
+        tankerDao.addTanker(tanker);
     }
 
     @Override

@@ -1,0 +1,29 @@
+### GET all tankers
+GET http://localhost:8080/webapi/tankers
+
+
+### GET all tankers with params
+GET http://localhost:8080/webapi/tankers?phrase=JohnSmith
+custom-header: custom-value
+Cookie: some-cookie=some-value
+
+
+### Get tanker by id
+GET http://localhost:8080/webapi/tankers/1
+Accept: appplication/xml
+
+
+### Get tankers of tank
+GET http://localhost:8080/webapi/tanks/1/tankers
+Accept: appplication/xml
+
+
+### Create new tanker
+POST http://localhost:8080/webapi/tankers/create-tanker
+Content-Type: application/json
+Accept-Language: it
+
+{
+  "name": "F",
+  "surname": "Dolas"
+}
