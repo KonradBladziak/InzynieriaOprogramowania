@@ -74,6 +74,7 @@ public class TankerRest {
             String errorMessage = errors.getAllErrors().stream()
                     .map(oe -> messageSource.getMessage(oe.getCode(), new Object[0], locale))
                     .reduce("errors:\n", (accu, oe)->accu+oe + "\n");
+            System.out.println(errorMessage);
             return ResponseEntity.badRequest().body(errorMessage);
         }
 

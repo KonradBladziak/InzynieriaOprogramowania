@@ -20,9 +20,8 @@ Accept: appplication/xml
 
 ### Create new tanker
 POST http://localhost:8080/webapi/tankers/create-tanker
-Accept: appplication/xml
 Content-Type: application/json
-Accept-Language: pl
+Accept-Language: it
 
 {
   "name": "F",
