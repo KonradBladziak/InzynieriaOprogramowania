@@ -3,6 +3,7 @@ package vod.web.rest;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,13 @@ public class TankerRest {
     private final TankService tankService;
     private final MessageSource messageSource;
     private final LocaleResolver localeResolver;
+    private final TankerValidator tankerValidator;
+
+    @InitBinder
+    void initBinder(WebDataBinder binder) {
+        //binder.setValidator(tankerValidator);
+        binder.addValidators(tankerValidator);
+    }
 
     @GetMapping("/tankers")
     List<Tanker> getTankers(@RequestParam(value = "phrase") String phrase,
