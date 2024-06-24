@@ -21,9 +21,36 @@ Accept: appplication/xml
 ### Create new tanker
 POST http://localhost:8080/webapi/tankers/create-tanker
 Content-Type: application/json
-Accept-Language: it
+Accept-Language: en
 
 {
-  "name": "F",
-  "surname": "Dolas"
+  "name": "John",
+  "surname": "Smith"
 }
+
+
+
+### Get all thanks
+GET http://localhost:8080/webapi/tanks
+Content-Type: application/json
+
+{
+  "name": "Tiger",
+  "id": 1
+}
+
+### Get tank by id
+GET http://localhost:8080/webapi/tanks/1
+
+### Get tanks which are used by thankers
+GET http://localhost:8080/webapi/tankers/1/tanks
+
+### Create new thank
+POST http://localhost:8080/webapi/tanks/create-tank
+{
+  "name": "test1"
+  "tankers": "null"
+  "plooton" : "null
+}
+
+

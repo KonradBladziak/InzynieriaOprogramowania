@@ -1,7 +1,6 @@
 package vod.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import vod.repository.TankerDao;
 import vod.repository.PlatoonDao;
@@ -91,5 +90,18 @@ public class TankServiceBean implements TankService {
     public Platoon addPlatoon(Platoon platoon) {
         log.info("about to add platoon " + platoon);
         return platoonDao.add(platoon);
+    }
+
+    @Override
+    public List<Tank> getTanksOfTanker(Tanker tanker) {
+        Tanker tanker1 = tankerDao.findById(tanker.getId());
+        if(tanker1 == null) {
+            return null;
+        }
+        List<Tank> tanks = tanker1.getTanks();
+        if(tanks == null) {
+            return null;
+        }
+        return tanks;
     }
 }

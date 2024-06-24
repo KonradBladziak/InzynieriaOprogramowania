@@ -1,5 +1,6 @@
 package vod.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
@@ -10,9 +11,12 @@ public class Tank {
     private int id;
     @NotNull
     private String name;
-    private Platoon platoon;
-    private List<Tanker> tankers = new ArrayList<>();
 
+
+    private Platoon platoon;
+
+    @JsonIgnore
+    private List<Tanker> tankers = new ArrayList<>();
 
     public Tank() {}
 
@@ -35,6 +39,10 @@ public class Tank {
         return this.name;
     }
 
+    public void setName(@NotNull String name) {
+        this.name = name;
+    }
+
     public Platoon getPlatoon() {
         return platoon;
     }
@@ -42,7 +50,6 @@ public class Tank {
     public void setPlatoon(Platoon platoon) {
         this.platoon = platoon;
     }
-
 
     public List<Tanker> getTankers() {
         return tankers;
@@ -55,7 +62,6 @@ public class Tank {
     public void addTanker(Tanker tanker) {
         this.tankers.add(tanker);
     }
-
 
     @Override
     public String toString() {

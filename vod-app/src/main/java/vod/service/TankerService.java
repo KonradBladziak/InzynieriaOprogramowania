@@ -7,13 +7,14 @@ import java.util.List;
 
 public interface TankerService {
 
-    Tanker getTankerById(int id);
-
-    void addTanker(Tanker tanker);
+    List<Tank> getTankInTanker(Tanker tanker);
 
     List<Tanker> getAllTankers();
 
     List<Tanker> getTankersByTank(Tank tank);
 
-    List<Tank> getTankInTanker(Tanker tanker);
+    Tanker getTankerById(int id);
+
+    void addTanker(Tanker tanker);
+
 }
